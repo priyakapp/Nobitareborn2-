@@ -1,12 +1,12 @@
-if [ -z $UPSTREAM_REPO ]
-then
-  echo "Cloning main Repository"
-  git clone https://github.com/priyakapp/Nobitareborn2-. /Nobitareborn2- 
-else
-  echo "Cloning Custom Repo from $UPSTREAM_REPO "
-  git clone $UPSTREAM_REPO /Nobitareborn2-
-fi
-cd /Nobitareborn2-
-pip3 install -U -r requirements.txt
-echo "Starting Bot...."
-python3 bot.py
+FROM python:3.10.8-slim-buster
+
+RUN apt update && apt upgrade -y
+RUN apt install git -y
+COPY requirements.txt /requirements.txt
+
+RUN cd /
+RUN pip3 install -U pip && pip3 install -U -r requirements.txt
+RUN mkdir /Auto-search-tamil-bot
+WORKDIR /Auto-search-tamil-bot
+COPY start.sh /start.sh
+CMD ["/bin/bash", "/start.sh"]
