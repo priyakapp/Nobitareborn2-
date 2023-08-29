@@ -28,7 +28,7 @@ async def song(client, message):
         thumb_name = f'thumb{title}.jpg'
         thumb = requests.get(thumbnail, allow_redirects=True)
         open(thumb_name, 'wb').write(thumb.content)
-        performer = f"[RIO NETWORKS™]" 
+        performer = f"[𝙿𝚒𝚡𝚝𝚊𝚛 𝚂𝚞𝚙𝚙𝚘𝚛𝚝]" 
         duration = results[0]["duration"]
         url_suffix = results[0]["url_suffix"]
         views = results[0]["views"]
@@ -43,7 +43,7 @@ async def song(client, message):
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
 
-        cap = "**BY›› [RIO NETWORKS™](https://t.me/creatorrio)**"
+        cap = "**BY›› [𝙿𝚒𝚡𝚝𝚊𝚛 𝚂𝚞𝚙𝚙𝚘𝚛𝚝™](https://t.me/+H2lwzPtgkHk3MGNl)**"
         secmul, dur, dur_arr = 1, 0, duration.split(':')
         for i in range(len(dur_arr)-1, -1, -1):
             dur += (int(dur_arr[i]) * secmul)
