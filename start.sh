@@ -1,12 +1,12 @@
-FROM python:3.10.8-slim-buster
-
-RUN apt update && apt upgrade -y
-RUN apt install git -y
-COPY requirements.txt /requirements.txt
-
-RUN cd /
-RUN pip3 install -U pip && pip3 install -U -r requirements.txt
-RUN mkdir /Auto-search-tamil-bot
-WORKDIR /Auto-search-tamil-bot
-COPY start.sh /start.sh
-CMD ["/bin/bash", "/start.sh"]
+if [ -z $UPSTREAM_REPO ]
+then
+  echo "Cloning main Repository"
+  git clone https://github.com/1238muj/THALAPATHY-FILTER-BOT.git /THALAPATHY-FILTER-BOT 
+else
+  echo "Cloning Custom Repo from $UPSTREAM_REPO "
+  git clone $UPSTREAM_REPO /THALAPATHY-FILTER-BOT 
+fi
+cd /THALAPATHY-FILTER-BOT 
+pip3 install -U -r requirements.txt
+echo "Starting Bot...."
+python3 bot.py
